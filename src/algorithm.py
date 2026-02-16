@@ -52,6 +52,7 @@ class Algorithm:
         for tile in tile_options[color_index]:
             self.case += 1
             current_combination.append(tile)
+            
             # Melakukan penyimpanan kombinasi
             if self.case % 1000000 == 0:
                 self.displayProgress(current_combination)
