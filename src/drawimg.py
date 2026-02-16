@@ -1,3 +1,5 @@
+# Kelas untuk menggambar solusi
+
 from PIL import Image, ImageDraw
 
 class Drawer:

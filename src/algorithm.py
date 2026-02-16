@@ -1,3 +1,5 @@
+# Kelas untuk algoritma brute force dalam penyelesaian
+
 import time
 
 class Algorithm:
@@ -11,16 +13,6 @@ class Algorithm:
         self.solved = False
         self.case = 0
         self.modulo = 1000
-
-        # Kalkulasi print step
-        if self.matrix.row < 8:
-            self.modulo = 1000
-        elif self.matrix.row >= 8 and self.matrix.row <= 10:
-            self.modulo = 10000
-        elif self.matrix.row >= 11 and self.matrix.row <= 13:
-            self.modulo = 100000
-        else:
-            self.modulo = 1000000
 
         # Pemrosesan input
         self.saveColor()
@@ -63,6 +55,7 @@ class Algorithm:
             # Melakukan penyimpanan kombinasi
             if self.case % 1000000 == 0:
                 self.displayProgress(current_combination)
+                
             if self.generateCombinations(tile_options, current_combination, color_index + 1):
                 return True
             current_combination.pop() 

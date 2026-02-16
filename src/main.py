@@ -1,4 +1,5 @@
-# Main Program Entry Point
+# Entry utama untuk program
+
 import gui.gui as App
 
 class MainProgram:

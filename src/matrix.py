@@ -1,3 +1,5 @@
+# Kelas Matriks untuk menyimpan data
+
 class Matrix:
     # Method untuk inisiasi kelas
     def __init__(self, filename):
@@ -16,16 +18,14 @@ class Matrix:
             self.matrix = []
             return
         
-        # Menghilangkan bari kosong
+        # Mengecek apakah keseluruhan file berisi matriks
         lines = [line for line in lines if line.strip()]
-        
         if len(lines) == 0:
             self.error_message = "File tidak mengandung data matrix"
             self.row = 0
             self.col = 0
             self.matrix = []
             return
-        
         self.row = len(lines)
         
         # Mengecek apakah ada nilai kosong pada matriks
@@ -40,7 +40,7 @@ class Matrix:
         
         # Mengecek apakah matriks persegi
         if self.row != first_row_length:
-            self.error_message = f"Matrix tidak persegi"
+            self.error_message = "Matrix tidak persegi"
             self.row = 0
             self.col = 0
             self.matrix = []

@@ -1,3 +1,5 @@
+# Kelas untuk membuat GUI dari program
+
 import tkinter as Tk
 from tkinter import filedialog as Fdg
 from tkinter import messagebox as Msg
@@ -33,11 +35,17 @@ class Window:
         self.footer_label.pack(pady=10)
 
         # Setup Loop
+        self.solution = None
+        self.problem = None
         self.initHome()
         self.root.mainloop()
 
     # Fungsi inisiasi home page aplikasi
     def initHome(self):
+        if self.solution:
+            del self.solution
+        if self.problem:
+            del self.problem
         self.clearLayout()
 
         # Setup container
@@ -45,7 +53,7 @@ class Window:
         main_content.pack(fill="both")
         main_content.place(relx=0.5, rely=0.5, anchor="center")
 
-        # Setup image
+        # Setup gambar
         img = Tk.PhotoImage(file="src/assets/image.png")
         label_img = Tk.Label(main_content, image=img, bg="#21222c")
         label_img.image = img 
@@ -53,7 +61,7 @@ class Window:
 
         # Setup text
         label1 = Tk.Label(main_content, text="Selamat datang di N-Queens Solver!", font=("Arial", 20, "bold"), bg="#21222c", fg="#8be9fd")
-        label2 = Tk.Label(main_content, text="Pastikan output dalam bentuk file dengan matriks persegi", font=("Arial", 14), bg="#21222c", fg="#f8f8f2") 
+        label2 = Tk.Label(main_content, text="Pastikan input dalam bentuk file dengan matriks persegi", font=("Arial", 14), bg="#21222c", fg="#f8f8f2") 
         label1.pack()
         label2.pack(pady=(0, 20))
 
@@ -126,7 +134,7 @@ class Window:
             Msg.showerror("Validation Error", self.problem.error_message)
             return
         
-        Algo.Algorithm(self.problem, self)
+        self.solution = Algo.Algorithm(self.problem, self)
 
     # Fungsi membersihkan bagian content pada aplikasi
     def clearLayout(self):
