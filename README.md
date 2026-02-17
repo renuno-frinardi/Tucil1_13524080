@@ -11,7 +11,7 @@ Pastikan ini semua sudah terinstall pada perangkat (Program ini diuji pada WSL A
 - Tkinter
 
 # Cara menjalankan
-1. Jalankan script main.py dari command line atau vscode
+1. Jalankan script main.py dengan "present working directory/pwd" berlokasi pada root repository ini dari command line atau vscode
 2. Klik tombol Start Solving dan pilih file .txt yang sesuai
 3. Tunggu program selesai, jika ditemukan solusi gambar nya akan disimpan di folder output dengan bentuk .png
 4. Klik tombol Coba Lagi apabila ingin menguji dengan kasus lain
