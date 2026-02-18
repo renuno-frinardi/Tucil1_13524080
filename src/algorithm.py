@@ -34,13 +34,12 @@ class Algorithm:
 
     # Fungsi inisasi bruteforce
     def computeBruteForce(self):
-        tile_options = [self.color_dict[color] for color in self.color_list]
-        self.generateCombinations(tile_options, [], 0)
+        self.generateCombinations(self.matrix.matrix, [], [0,0])
     
     # Fungsi proses rekursif pada brute force
-    def generateCombinations(self, tile_options, current_combination, color_index):
+    def generateCombinations(self, matrix_pos, current_combination, last_pos):
         # Basis apabila sudah berada di warna terakhir
-        if color_index == len(tile_options):
+        if len(current_combination) == len(self.color_list):
             if self.isValid(current_combination):
                 for i in range(len(current_combination)):
                     self.queen_positions.append(current_combination[i])
@@ -49,17 +48,25 @@ class Algorithm:
             return False
         
         # Rekurens mengecek seluruh kombinasi warna
-        for tile in tile_options[color_index]:
-            self.case += 1
-            current_combination.append(tile)
-            
-            # Melakukan penyimpanan kombinasi
-            if self.case % 1000000 == 0:
-                self.displayProgress(current_combination)
-                
-            if self.generateCombinations(tile_options, current_combination, color_index + 1):
-                return True
-            current_combination.pop() 
+        if last_pos == [0, 0]:
+            i, j = 0, 0
+        else:
+            i, j = last_pos[0], last_pos[1] + 1
+            if j >= self.matrix.col:
+                i += 1
+                j = 0
+        while (i < self.matrix.row):
+            while (j < self.matrix.col):
+                self.case += 1
+                current_combination.append((i, j))
+                if self.case % 1000000 == 0:
+                    self.displayProgress(current_combination)
+                if self.generateCombinations(matrix_pos, current_combination, [i, j]):
+                    return True
+                current_combination.pop()
+                j += 1
+            i += 1
+            j = 0
         return False
     
     # Mengecek apakah susunan ratu valid
@@ -67,6 +74,8 @@ class Algorithm:
         for i in range(len(positions)):
             for j in range(i + 1, len(positions)):
                 pos1, pos2 = positions[i], positions[j]
+                if self.matrix.matrix[pos1[0]][pos1[1]] == self.matrix.matrix[pos2[0]][pos2[1]]:
+                    return False
                 if pos1[0] == pos2[0] or pos1[1] == pos2[1] or abs(pos1[0] - pos2[0]) == abs(pos1[1] - pos2[1]) == 1:
                     return False
         return True
