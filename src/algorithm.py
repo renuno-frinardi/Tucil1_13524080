@@ -34,10 +34,10 @@ class Algorithm:
 
     # Fungsi inisasi bruteforce
     def computeBruteForce(self):
-        self.generateCombinations(self.matrix.matrix, [], [0,0])
+        self.generateCombinations([], [0,0])
     
     # Fungsi proses rekursif pada brute force
-    def generateCombinations(self, matrix_pos, current_combination, last_pos):
+    def generateCombinations(self, current_combination, last_pos):
         # Basis apabila sudah berada di warna terakhir
         if len(current_combination) == len(self.color_list):
             if self.isValid(current_combination):
@@ -61,7 +61,7 @@ class Algorithm:
                 current_combination.append((i, j))
                 if self.case % 1000000 == 0:
                     self.displayProgress(current_combination)
-                if self.generateCombinations(matrix_pos, current_combination, [i, j]):
+                if self.generateCombinations(current_combination, [i, j]):
                     return True
                 current_combination.pop()
                 j += 1
